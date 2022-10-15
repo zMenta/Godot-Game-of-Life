@@ -2,6 +2,8 @@ extends TileMap
 
 onready var generation_timer := $NewGenerationTimer
 
+# map size is 128x75 cells 
+var map_size := [128,75]
 var i = 0
 
 # Cell code: 0 = dead, 1 = alive
