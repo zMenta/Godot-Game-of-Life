@@ -5,6 +5,7 @@ signal pause_mode_changed(value)
 
 onready var speed_slider : HSlider = $"%SpeedSlider"
 onready var speed_value : Label = $"%SpeedValue"
+onready var options_menu := $"%Options"
 
 
 func _ready() -> void:
@@ -17,3 +18,7 @@ func _on_SpeedSlider_value_changed(value: float) -> void:
 
 func _on_PauseButton_toggled(button_pressed: bool) -> void:
 	emit_signal("pause_mode_changed", button_pressed)
+
+
+func _on_BtnOptions_pressed() -> void:
+	options_menu.visible = not options_menu.visible
