@@ -51,3 +51,7 @@ func new_generation() -> void:
 
 func _on_NewGenerationTimer_timeout() -> void:
 	new_generation()
+
+
+func _on_SpeedSlider_value_change(value: float) -> void:
+	print(value)
