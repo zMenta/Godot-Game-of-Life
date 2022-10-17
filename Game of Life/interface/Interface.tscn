@@ -26,7 +26,6 @@ text = "Options"
 
 [node name="Options" type="Control" parent="MarginContainer/HeaderContainer"]
 unique_name_in_owner = true
-visible = false
 margin_top = 24.0
 margin_right = 100.0
 margin_bottom = 24.0
@@ -75,6 +74,18 @@ margin_top = 38.0
 margin_right = 168.0
 margin_bottom = 62.0
 text = "Paused"
+
+[node name="MouseLabel" type="Label" parent="MarginContainer/HeaderContainer/Options/ContentContainer"]
+margin_top = 66.0
+margin_right = 168.0
+margin_bottom = 80.0
+text = "Mouse Left Button: Paint"
+
+[node name="MouseLabel2" type="Label" parent="MarginContainer/HeaderContainer/Options/ContentContainer"]
+margin_top = 84.0
+margin_right = 168.0
+margin_bottom = 98.0
+text = "Mouse Right Button: Erase"
 
 [connection signal="pressed" from="MarginContainer/HeaderContainer/BtnOptions" to="." method="_on_BtnOptions_pressed"]
 [connection signal="value_changed" from="MarginContainer/HeaderContainer/Options/ContentContainer/SpeedContainer/SpeedSlider" to="." method="_on_SpeedSlider_value_changed"]

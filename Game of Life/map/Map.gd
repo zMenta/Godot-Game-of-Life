@@ -16,6 +16,17 @@ enum Cell {
 	}
 
 
+func _process(_delta: float) -> void:
+	var mouse_pos = get_local_mouse_position()
+	var tile_pos = world_to_map(mouse_pos)
+
+	if Input.is_action_pressed("paint"):
+		set_cell(tile_pos.x, tile_pos.y, Cell.alive)
+
+	if Input.is_action_pressed("erase"):
+		set_cell(tile_pos.x, tile_pos.y, Cell.dead)
+
+
 # Returns the alive cells surrounding a determined cell position.
 func check_surround(pos_x: int, pos_y: int) -> int:
 	# get_cell(x,y) = -1 -> null
