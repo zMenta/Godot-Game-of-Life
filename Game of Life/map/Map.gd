@@ -16,7 +16,7 @@ enum Cell {
 	}
 
 
-func _process(_delta: float) -> void:
+func _unhandled_input(_event: InputEvent) -> void:
 	var mouse_pos = get_local_mouse_position()
 	var tile_pos = world_to_map(mouse_pos)
 
@@ -85,8 +85,8 @@ func _on_NewGenerationTimer_timeout() -> void:
 
 func _on_SpeedSlider_value_change(value: float) -> void:
 	generation_timer.wait_time = value
-	generation_timer.start(value)
-	
+
+
 func _on_PauseButton_value_changed(paused: bool) -> void:
 	if paused:
 		generation_timer.stop()
