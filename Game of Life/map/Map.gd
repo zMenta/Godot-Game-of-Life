@@ -1,6 +1,6 @@
 extends TileMap
 
-onready var generation_timer := $NewGenerationTimer
+onready var generation_timer : Timer = $NewGenerationTimer
 
 # Map size enum
 # map size is 128x75 cells
@@ -54,4 +54,11 @@ func _on_NewGenerationTimer_timeout() -> void:
 
 
 func _on_SpeedSlider_value_change(value: float) -> void:
-	print(value)
+	generation_timer.wait_time = value
+	generation_timer.start(value)
+	
+func _on_PauseButton_value_changed(paused: bool) -> void:
+	if paused:
+		generation_timer.stop()
+	else:
+		generation_timer.start()
