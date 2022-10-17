@@ -35,18 +35,37 @@ func check_surround(pos_x: int, pos_y: int) -> int:
 
 	return alive_cells
 
-
+# Checks for cells that need to be changed and then calls draw_generation().
 func new_generation() -> void:
+	var cells_to_change := []
+
 	for i in range(map.x):
 		for j in range(map.y):
-			var cell := get_cell(i, j)
+			var state := get_cell(i, j)
+			var cell = {
+				"state" : state,
+				"pos_x" : i,
+				"pos_y" : j,
+				"state_to_change" : -1
+				}
+
 			var alive_cells := check_surround(i, j)
 
-			if cell == Cell.dead and alive_cells == 3:
-				set_cell(i, j, Cell.alive)
+			if cell.state == Cell.dead and alive_cells == 3:
+				cell.state_to_change = Cell.alive
 
-			if cell == Cell.alive and (alive_cells < 2 or alive_cells > 3):
-				set_cell(i, j, Cell.dead)
+			if cell.state == Cell.alive and (alive_cells < 2 or alive_cells > 3):
+				cell.state_to_change = Cell.dead
+
+			if cell.state_to_change != -1:
+				cells_to_change.append(cell)
+
+	draw_generation(cells_to_change)
+
+# Draws the tileset with set_cell() for the changed tiles in the map.
+func draw_generation(cells: Array) -> void:
+	for cell in cells:
+		set_cell(cell.pos_x, cell.pos_y, cell.state_to_change)
 
 
 func _on_NewGenerationTimer_timeout() -> void:
