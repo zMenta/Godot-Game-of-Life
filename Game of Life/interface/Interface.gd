@@ -2,6 +2,7 @@ extends Control
 
 signal speed_changed(value)
 signal pause_mode_changed(value)
+signal board_clear_button_pressed
 
 onready var speed_slider : HSlider = $"%SpeedSlider"
 onready var speed_value : Label = $"%SpeedValue"
@@ -22,3 +23,7 @@ func _on_PauseButton_toggled(button_pressed: bool) -> void:
 
 func _on_BtnOptions_pressed() -> void:
 	options_menu.visible = not options_menu.visible
+
+
+func _on_BtnClearBoard_pressed() -> void:
+	emit_signal("board_clear_button_pressed")

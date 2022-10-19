@@ -98,3 +98,8 @@ func _on_PauseButton_value_changed(paused: bool) -> void:
 		generation_timer.stop()
 	else:
 		generation_timer.start()
+
+
+
+func _on_BoardClear_pressed() -> void:
+	clear_map()
