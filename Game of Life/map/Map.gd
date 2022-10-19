@@ -79,6 +79,12 @@ func draw_generation(cells: Array) -> void:
 		set_cell(cell.pos_x, cell.pos_y, cell.state_to_change)
 
 
+func clear_map() -> void:
+	for i in range(map.x):
+		for j in range(map.y):
+			set_cell(i, j, Cell.dead)
+
+
 func _on_NewGenerationTimer_timeout() -> void:
 	new_generation()
 
@@ -92,3 +98,8 @@ func _on_PauseButton_value_changed(paused: bool) -> void:
 		generation_timer.stop()
 	else:
 		generation_timer.start()
+
+
+
+func _on_BoardClear_pressed() -> void:
+	clear_map()
